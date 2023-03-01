@@ -1,32 +1,77 @@
+import React from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../asset/Header.css";
+
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 import { Link } from "react-router-dom";
 
-const Header = () => {
+function Header() {
   return (
-    <div className="container-fluid ">
-      <div className="row">
-        <div className="col-lg-4 col-md-12 my-header">
-          <span className="logo">Ce</span>
-          <span className="logo-text">Connect & Explore</span>
-        </div>
-        <div className="col-lg-6 col-md-6 col-sm-12  my-navbar ">
-          <Link className="active" to="/home">
-            Home
-          </Link>
-          <Link to="/sports">Sports</Link>
-          <Link to="/travel">Travel</Link>
-          <Link to="/concert">Concerts</Link>
-          <Link to="/business">Business</Link>
-        </div>
+    <div>
+      <nav
+        class="navbar navbar-light navbar-expand-lg "
+        style={{ backgroundColor: "rgb(203, 195, 227)" }}
+      >
+        <Link className="navbar-brand" to="/home">
+          Ce | Connect & Explore
+        </Link>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <div className="col-lg-2 col-md-6 register d-flex justify-content-end">
-          <Link to="login">Login</Link>
-          <Link to="signup">Sign Up</Link>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <Link class="nav-link" to="/home">
+                Home <span class="sr-only">(current)</span>
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link class="nav-link" to="/sports">
+                Sports
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link class="nav-link" to="/travel">
+                Travel
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link class="nav-link" to="/concert">
+                Concert
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link class="nav-link" to="/business">
+                Business
+              </Link>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link className="nav-link" to="/signup">
+                Signup
+              </Link>
+            </li>
+          </ul>
         </div>
-      </div>
+      </nav>
     </div>
   );
-};
+}
 
 export default Header;
