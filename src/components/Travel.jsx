@@ -1,5 +1,9 @@
 const Travel = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h2>In Travel</h2>
+    </div>
+  );
 };
 
 export default Travel;
