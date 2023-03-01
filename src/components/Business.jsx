@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function Business() {
-  return <div></div>;
+  return (
+    <div>
+      <h2>In Business</h2>
+    </div>
+  );
 }
