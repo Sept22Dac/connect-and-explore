@@ -1,5 +1,9 @@
 const Sports = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h2>In Sports</h2>
+    </div>
+  );
 };
 
 export default Sports;
