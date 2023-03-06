@@ -4,9 +4,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import { clearCurrentUser } from "../store/actions/user";
+import { Role } from "../models/role";
 
 function Header() {
+  const currentUser = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(clearCurrentUser());
+    navigate("/login");
+  };
   return (
     <div>
       <nav
@@ -56,18 +68,48 @@ function Header() {
               </Link>
             </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
-            </li>
-            <li class="nav-item">
-              <Link className="nav-link" to="/signup">
-                Signup
-              </Link>
-            </li>
-          </ul>
+
+          {currentUser?.role === Role.USER && (
+            <ul class="nav navbar-nav navbar-right">
+              <li class="nav-item">
+                <Link className="nav-link" to="/profile">
+                  {currentUser.fname}
+                </Link>
+              </li>
+            </ul>
+          )}
+          {currentUser?.role === Role.ADMIN && (
+            <ul class="nav navbar-nav navbar-right">
+              <li class="nav-item">
+                <Link className="nav-link" to="/admin">
+                  Admin
+                </Link>
+              </li>
+            </ul>
+          )}
+          {!currentUser && (
+            <ul class="nav navbar-nav navbar-right">
+              <li class="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link className="nav-link" to="/signup">
+                  Signup
+                </Link>
+              </li>
+            </ul>
+          )}
+          {currentUser && (
+            <ul class="nav navbar-nav navbar-right">
+              <li class="nav-item">
+                <Link className="nav-link" onClick={() => logout()}>
+                  Sign Out
+                </Link>
+              </li>
+            </ul>
+          )}
         </div>
       </nav>
     </div>

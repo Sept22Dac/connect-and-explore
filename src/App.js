@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Sports from "./components/Sports";
 import Travel from "./components/Travel";
@@ -9,21 +9,32 @@ import Concert from "./components/Concert";
 import Business from "./components/Business";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import ProfilePage from "./pages/profile/profile.page";
+import { AuthGuard } from "./guards/auth.guard";
+import { Role } from "./models/role";
 function App() {
   return (
-    <Router>
+    <div>
       <Header />
-      <Switch>
-        <Route path="/" exact component={Home}></Route>
-        <Route path="/home" component={Home}></Route>
-        <Route path="/sports" component={Sports}></Route>
-        <Route path="/travel" component={Travel}></Route>
-        <Route path="/concert" component={Concert}></Route>
-        <Route path="/business" component={Business}></Route>
-        <Route path="/login" component={Login}></Route>
-        <Route path="/signup" component={Signup}></Route>
-      </Switch>
-    </Router>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route
+          path="/profile"
+          element={
+            <AuthGuard roles={[Role.USER, Role.ADMIN]}>
+              <ProfilePage />
+            </AuthGuard>
+          }
+        ></Route>
+        <Route path="/sports" element={<Sports />}></Route>
+        <Route path="/travel" element={<Travel />}></Route>
+        <Route path="/concert" element={<Concert />}></Route>
+        <Route path="/business" element={<Business />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+      </Routes>
+    </div>
   );
 }
 
