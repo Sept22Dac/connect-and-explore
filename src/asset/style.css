@@ -1,0 +1,36 @@
+/* .container-fluid {
+  
+} */
+
+.container-fluid {
+  max-height: 600px;
+}
+.w-100 {
+  max-width: 1500px;
+  max-height: 700px;
+}
+
+.sports {
+  display: relative;
+}
+
+.caption-text {
+  display: absolute;
+  top: 0px;
+}
+
+.travel-cap {
+  color: white;
+}
+
+.concert-cap {
+  color: white;
+}
+
+.btn-primary {
+  border-radius: 5px;
+  font-size: 30px;
+  width: 200px;
+  height: 50px;
+  margin-left: 300px;
+}
