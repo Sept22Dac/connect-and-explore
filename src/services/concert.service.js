@@ -31,6 +31,17 @@ class ConcertService {
     return axios.delete(API_URL + "/" + concert.id, { headers: getUserRole() });
   }
 
+  getAllJoinedConcerts(id) {
+    return axios.get(API_URL + `/concertevents/${id}`, {
+      headers: authHeader(),
+    });
+  }
+  getAllCreatedConcerts(id) {
+    return axios.get(API_URL + `/myconcertevents/${id}`, {
+      headers: authHeader(),
+    });
+  }
+
   getAllConcerts() {
     return axios.get(API_URL + "/concerts");
   }

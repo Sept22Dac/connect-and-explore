@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route
-          path="/profile"
+          path="/profile/*"
           element={
             <AuthGuard roles={[Role.USER, Role.ADMIN]}>
               <ProfilePage />

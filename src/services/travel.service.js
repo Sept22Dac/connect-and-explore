@@ -1,16 +1,30 @@
-import { BASE_API_URL } from '../common/constants';
-import axios from 'axios';
+import { BASE_API_URL } from "../common/constants";
+import axios from "axios";
 import { clearCurrentUser, setCurrentUser } from "../store/actions/user";
-import { useSelector } from 'react-redux';
-import { authHeader, getUserRole } from './base.service';
+import { useSelector } from "react-redux";
+import { authHeader, getUserRole } from "./base.service";
 
-const API_URL = BASE_API_URL + '/event';
+const API_URL = BASE_API_URL + "/event";
 
 class TravelService {
   //const currentUser = useSelector((state) => state.user);
-  saveTravel(travel,id) {
+  saveTravel(travel, id) {
     console.log(id);
-  return axios.post(API_URL+ `/add/travel?id=${id}`,travel, { headers: authHeader() });
+    return axios.post(API_URL + `/add/travel?id=${id}`, travel, {
+      headers: authHeader(),
+    });
+  }
+
+  getAllJoinedTravels(id) {
+    return axios.get(API_URL + `/travelevents/${id}`, {
+      headers: authHeader(),
+    });
+  }
+
+  getAllCreatedTravels(id) {
+    return axios.get(API_URL + `/mytravelevents/${id}`, {
+      headers: authHeader(),
+    });
   }
 
   //upload travel image
@@ -26,11 +40,11 @@ class TravelService {
   // }
 
   deleteTravel(travel) {
-    return axios.delete(API_URL + '/' + travel.id, { headers: getUserRole() });
+    return axios.delete(API_URL + "/" + travel.id, { headers: getUserRole() });
   }
 
   getAllTravels() {
-    return axios.get(API_URL + '/travels');
+    return axios.get(API_URL + "/travels");
   }
   // getTravelImage(id) {
   //   return axios.get(`http://localhost:8080/travels/${id}/image`, {
