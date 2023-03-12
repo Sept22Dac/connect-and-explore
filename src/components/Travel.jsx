@@ -65,6 +65,14 @@ const Travel = () => {
     //     });
     // };
 
+    const join = (concert) =>{
+        if(!currentUser?.id){
+            setErrorMessage('You should login to join a concert.');
+            return;
+        }
+        
+    }
+
     return (
         <div className="container p-3">
 
@@ -98,8 +106,8 @@ const Travel = () => {
                             </div>
                             <div className="col-6">
                                 <button
-                                    className="btn btn-outline-success w-100" onClick={() => purchase(item)}>
-                                    Buy
+                                    lassName="btn btn-outline-success w-100" onClick={() => join(item)}>
+                                    Join
                                 </button>
                             </div>
                         </div>

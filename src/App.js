@@ -29,7 +29,7 @@ function App() {
         ></Route>
         <Route path="/sports" element={<Sports />}></Route>
         <Route path="/travel" element={<Travel />}></Route>
-        <Route path="/concert" element={<Concert />}></Route>
+        <Route path="/concert/*" element={<Concert />}></Route>
         <Route path="/business" element={<Business />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>

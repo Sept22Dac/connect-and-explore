@@ -2,14 +2,15 @@ import { BASE_API_URL } from '../common/constants';
 import axios from 'axios';
 import { clearCurrentUser, setCurrentUser } from "../store/actions/user";
 import { useSelector } from 'react-redux';
-import { getUserRole } from './base.service';
+import { authHeader, getUserRole } from './base.service';
 
 const API_URL = BASE_API_URL + '/event';
 
 class ConcertService {
   //const currentUser = useSelector((state) => state.user);
-  saveConcert(concert,) {
-  return axios.post(API_URL+ '/add/concert', { headers: getUserRole() });
+  saveConcert(concert,id) {
+    console.log(id);
+  return axios.post(API_URL+ `/add/concert?${id}`, { headers: authHeader() });
   }
 
   //upload concert image

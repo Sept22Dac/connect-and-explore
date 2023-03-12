@@ -137,11 +137,13 @@ const Signup = () => {
           <div className="form-group">
             <label htmlFor="gender">Gender:</label>
             <select
+              required
               name="gender"
               className="form-control"
               value={user.gender}
               onChange={(e) => handleChange(e)}
             >
+              <option value="">Select Gender</option>
               <option value="MALE">Male</option>
               <option value="FEMALE">Female</option>
               <option value="TRANSGENDER">Transgender</option>

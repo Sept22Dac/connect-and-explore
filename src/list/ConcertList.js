@@ -1,26 +1,27 @@
 import { useEffect, useState } from 'react';
-import SportService from '../services/sport.service';
+import ConcertService from '../services/concert.service';
 import { useSelector } from 'react-redux';
-import sport from '../models/sport';
-import './styling.css';
 
-const Sports = () => {
-  const [sportList, setSportList] = useState([]);
+
+import '../components/styling.css';
+
+const ConcertList = () => {
+  const [concertList, setConcertList] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     const [infoMessage, setInfoMessage] = useState('');
     
-    const [pics, setPics] = useState({});
+ 
 
     const currentUser = useSelector(state => state.user);
-  //  const fixedImg="http://localhost:8080/sports/1/image"
-    const BASE_URL="http://localhost:8080/sports/";
-    // const showImage=(sport)=>{
-    //     console.log("in show image "+sport.id);
-    //     SportService.getSportImage(sport.id).
+  //  const fixedImg="http://localhost:8080/concerts/1/image"
+    const BASE_URL="http://localhost:8080/event/";
+    // const showImage=(concert)=>{
+    //     console.log("in show image "+concert.id);
+    //     ConcertService.getConcertImage(concert.id).
     //     then((res) =>
     //      {
-    //          sport.url=URL.createObjectURL(res.data);
-    //  //   console.log("url "+sport.url);        
+    //          concert.url=URL.createObjectURL(res.data);
+    //  //   console.log("url "+concert.url);        
     //     setPics(URL.createObjectURL(res.data));
     //    // console.log("pics "+pics);
     // }
@@ -33,8 +34,8 @@ const Sports = () => {
 
     useEffect(() => {
         console.log("use effect1");
-        SportService.getAllSports().then((response) => {
-            setSportList(response.data);
+        ConcertService.getAllConcerts().then((response) => {
+            setConcertList(response.data);
 
         });
         
@@ -43,27 +44,29 @@ const Sports = () => {
     []);
     // useEffect(() => {
     //     console.log("use effect2");
-    //     console.log("pr list1 "+sportList);
-    //     sportList.forEach(sport =>{             
-    //         showImage(sport);
+    //     console.log("pr list1 "+concertList);
+    //     concertList.forEach(concert =>{             
+    //         showImage(concert);
     //     });
-    // },[sportList]);
+    // },[concertList]);
 
-    // const purchase = (sport) => {
+    // const purchase = (concert) => {
     //     if (!currentUser?.id) {
-    //         setErrorMessage('You should login to buy a sport.');
+    //         setErrorMessage('You should login to buy a concert.');
     //         return;
     //     }
 
-    //     const purchase = new Purchase(currentUser.id, sport.id, sport.price);
+    //     const purchase = new Purchase(currentUser.id, concert.id, concert.price);
 
     //     PurchaseService.savePurchase(purchase).then(() => {
-    //         setInfoMessage('Sport Purchased.');
+    //         setInfoMessage('Concert Purchased.');
     //     }).catch((err) => {
     //         setErrorMessage('Unexpected error occurred.');
     //         console.log(err);
     //     });
     // };
+
+
     const join = (concert) =>{
         if(!currentUser?.id){
             setErrorMessage('You should login to join a concert.');
@@ -73,7 +76,12 @@ const Sports = () => {
     }
 
     return (
-        <div className="container p-3">
+
+        
+        
+        <div className="container mx-5 my-3">
+            
+            <h2 >Lists of Concerts are as follows:</h2>
 
             {errorMessage &&
             <div className="alert alert-danger">
@@ -86,22 +94,28 @@ const Sports = () => {
                 {infoMessage}
             </div>
             }
+            
 
             <div className="d-flex flex-wrap">
-                {sportList.map((item, ind) =>
+                {concertList.map((item, ind) =>
                     <div key={item.id} className="card m-3 home-card">
 
                         <div className="card-body">
-                            <div className="card-title text-uppercase">{item.name}</div>
-                            <div className="card-subtitle text-muted">{item.description}</div>
+                            <div className="card-title text-uppercase">Name: {item.name}</div>
+                            <div className="card-subtitle text-muted">Location: {item.location}</div>
+                            <div className="card-subtitle text-muted">Date: {item.date}</div>
+                            <div className="card-subtitle text-muted">Maximum Capacity: {item.required}</div>
+                            <div className="card-subtitle text-muted">Number of People Joined: {item.joined}</div>
+                            <div className="card-subtitle text-muted">Entry: {item.paid}</div>
+                            {/* <div className="card-subtitle text-muted">{item.charges}</div> */}
                        
-                         <img src={BASE_URL +item.id +'/image'} style={{'height':'100px','width':'100px'}} alt="No Image!!!"></img>
+                         {/* <img src={BASE_URL +item.id +'/image'} style={{'height':'100px','width':'100px'}} alt="No Image!!!"></img> */}
                          </div>
                         
 
                         <div className="row mt-2 p-3">
                             <div className="col-6 mt-2 ps-4">
-                                {`Rs. ${item.price}`}
+                                {`Rs. ${item.charges}`}
                             </div>
                             <div className="col-6">
                                 <button
@@ -115,9 +129,14 @@ const Sports = () => {
                 )}
 
             </div>
+            
 
+                      
         </div>
+        
+        
+        
   );
 };
 
-export default Sports;
+export default ConcertList;
