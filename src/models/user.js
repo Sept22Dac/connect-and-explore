@@ -1,6 +1,6 @@
 export default class User {
   constructor(
-    id,
+    user_id,
     fname,
     lname,
     dob,
@@ -13,7 +13,7 @@ export default class User {
     role,
     token
   ) {
-    this.id = id;
+    this.user_id = user_id;
     this.fname = fname;
     this.lname = lname;
     this.dob = dob;

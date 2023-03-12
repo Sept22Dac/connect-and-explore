@@ -1,12 +1,16 @@
 import { BASE_API_URL } from '../common/constants';
 import axios from 'axios';
-import { getUserRole } from './base.service';
+import { clearCurrentUser, setCurrentUser } from "../store/actions/user";
+import { useSelector } from 'react-redux';
+import { authHeader, getUserRole } from './base.service';
 
-const API_URL = BASE_API_URL + '/travels';
+const API_URL = BASE_API_URL + '/event';
 
 class TravelService {
-  saveTravel(travel) {
-    return axios.post(API_URL, travel, { headers: getUserRole() });
+  //const currentUser = useSelector((state) => state.user);
+  saveTravel(travel,id) {
+    console.log(id);
+  return axios.post(API_URL+ `/add/travel?id=${id}`,travel, { headers: authHeader() });
   }
 
   //upload travel image
@@ -26,7 +30,7 @@ class TravelService {
   }
 
   getAllTravels() {
-    return axios.get(API_URL);
+    return axios.get(API_URL + '/travels');
   }
   // getTravelImage(id) {
   //   return axios.get(`http://localhost:8080/travels/${id}/image`, {
