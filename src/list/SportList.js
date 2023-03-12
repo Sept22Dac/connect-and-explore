@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
 import SportService from '../services/sport.service';
 import { useSelector } from 'react-redux';
-import sport from '../models/sport';
-import './styling.css';
 
-const Sports = () => {
+
+import '../components/styling.css';
+import sportService from '../services/sport.service';
+
+const SportList = (props) => {
   const [sportList, setSportList] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     const [infoMessage, setInfoMessage] = useState('');
     
-    const [pics, setPics] = useState({});
+ 
 
     const currentUser = useSelector(state => state.user);
   //  const fixedImg="http://localhost:8080/sports/1/image"
-    const BASE_URL="http://localhost:8080/sports/";
+    const BASE_URL="http://localhost:8080/event/";
     // const showImage=(sport)=>{
     //     console.log("in show image "+sport.id);
     //     SportService.getSportImage(sport.id).
@@ -32,11 +34,21 @@ const Sports = () => {
 
 
     useEffect(() => {
+
+        
         console.log("use effect1");
-        SportService.getAllSports().then((response) => {
+
+        if(props.stype!=null){
+        SportService.getParticularSports(props.stype).then((response) => {
             setSportList(response.data);
 
         });
+    }
+    else{
+        sportService.getAllSports().then((response)=>{
+            setSportList(response.data);
+        });
+    }
         
         
     }, 
@@ -50,7 +62,7 @@ const Sports = () => {
     // },[sportList]);
 
     // const purchase = (sport) => {
-    //     if (!currentUser?.id) {
+    //     if (!currentUser?.user_id) {
     //         setErrorMessage('You should login to buy a sport.');
     //         return;
     //     }
@@ -64,16 +76,23 @@ const Sports = () => {
     //         console.log(err);
     //     });
     // };
-    const join = (concert) =>{
-        if(!currentUser?.id){
-            setErrorMessage('You should login to join a concert.');
+
+
+    const join = (sport) =>{
+        if(!currentUser?.user_id){
+            setErrorMessage('You should login to join a sport.');
             return;
         }
         
     }
 
     return (
-        <div className="container p-3">
+
+        
+        
+        <div className="container mx-5 my-3">
+            
+            <h2 >Lists of Sports are as follows:</h2>
 
             {errorMessage &&
             <div className="alert alert-danger">
@@ -86,23 +105,30 @@ const Sports = () => {
                 {infoMessage}
             </div>
             }
+            
 
             <div className="d-flex flex-wrap">
                 {sportList.map((item, ind) =>
                     <div key={item.id} className="card m-3 home-card">
 
                         <div className="card-body">
-                            <div className="card-title text-uppercase">{item.name}</div>
-                            <div className="card-subtitle text-muted">{item.description}</div>
+                            <div className="card-title text-uppercase">Sport: {item.stype}</div>
+                            <div className="card-subtitle text-muted">Location: {item.location}</div>
+                            <div className="card-subtitle text-muted">Date : {item.date.substring(0, 10)}</div>
+                            <div className="card-subtitle text-muted">Time : {item.date.substring(11,16)}</div>
+                            <div className="card-subtitle text-muted">Maximum Capacity: {item.required}</div>
+                            <div className="card-subtitle text-muted">Number of People Joined: {item.joined}</div>
+                            <br/>
+                            <div className="card-subtitle text-muted">Details: <br/>{item.name}</div>
+                            
+                            {/* <div className="card-subtitle text-muted">{item.charges}</div> */}
                        
-                         <img src={BASE_URL +item.id +'/image'} style={{'height':'100px','width':'100px'}} alt="No Image!!!"></img>
+                         {/* <img src={BASE_URL +item.id +'/image'} style={{'height':'100px','width':'100px'}} alt="No Image!!!"></img> */}
                          </div>
                         
 
                         <div className="row mt-2 p-3">
-                            <div className="col-6 mt-2 ps-4">
-                                {`Rs. ${item.price}`}
-                            </div>
+                            
                             <div className="col-6">
                                 <button
                                     className="btn btn-outline-success w-100" onClick={() => join(item)}>
@@ -115,9 +141,14 @@ const Sports = () => {
                 )}
 
             </div>
+            
 
+                      
         </div>
+        
+        
+        
   );
 };
 
-export default Sports;
+export default SportList;

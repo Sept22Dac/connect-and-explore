@@ -26,16 +26,17 @@ export default function ConcertForm() {
     };
     const addConcert=(e)=>{
         e.preventDefault();
+       
         setSubmitted(true);
         console.log(concert);
 
-        if (!concert.name || !concert.location || !concert.date || !concert.required|| !concert.paid||!concert.charges) {
+        if (!concert.name || !concert.location || !concert.date || !concert.required) {
             return;
           }
       
         setLoading(true);
 
-        ConcertService.saveConcert(concert,currentUser?.id)
+        ConcertService.saveConcert(concert,currentUser?.user_id)
         .then((_) =>{
             navigate("/concert/viewConcert");
         })

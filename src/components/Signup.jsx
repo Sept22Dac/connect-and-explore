@@ -18,7 +18,7 @@ const Signup = () => {
 
   //mounted
   useEffect(() => {
-    if (currentUser?.id) {
+    if (currentUser?.user_id) {
       //navigate
       navigate("/profile");
     }

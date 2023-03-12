@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Home from "./components/Home";
-import Sports from "./components/Sports";
+import Sport from "./components/Sport";
 import Travel from "./components/Travel";
 import Concert from "./components/Concert";
 import Business from "./components/Business";
@@ -27,8 +27,8 @@ function App() {
             </AuthGuard>
           }
         ></Route>
-        <Route path="/sports" element={<Sports />}></Route>
-        <Route path="/travel" element={<Travel />}></Route>
+        <Route path="/sport/*" element={<Sport />}></Route>
+        <Route path="/travel/*" element={<Travel />}></Route>
         <Route path="/concert/*" element={<Concert />}></Route>
         <Route path="/business" element={<Business />}></Route>
         <Route path="/login" element={<Login />}></Route>

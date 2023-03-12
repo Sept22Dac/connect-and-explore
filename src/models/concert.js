@@ -17,8 +17,8 @@ export default class Concert {
         this.date=date;
         
         this.required=required;
-        this.joined=joined;
-        this.paid=paid;
+        this.joined=0;
+        this.paid=0;
         this.charges=charges;
       }
 }

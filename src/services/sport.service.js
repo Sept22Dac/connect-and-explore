@@ -1,12 +1,16 @@
 import { BASE_API_URL } from '../common/constants';
 import axios from 'axios';
-import { getUserRole } from './base.service';
+import { clearCurrentUser, setCurrentUser } from "../store/actions/user";
+import { useSelector } from 'react-redux';
+import { authHeader, getUserRole } from './base.service';
 
-const API_URL = BASE_API_URL + '/sports';
+const API_URL = BASE_API_URL + '/event';
 
 class SportService {
-  saveSport(sport) {
-    return axios.post(API_URL, sport, { headers: getUserRole() });
+  //const currentUser = useSelector((state) => state.user);
+  saveSport(sport,id) {
+    console.log(id);
+  return axios.post(API_URL+ `/add/sport?id=${id}`,sport, { headers: authHeader() });
   }
 
   //upload sport image
@@ -25,8 +29,12 @@ class SportService {
     return axios.delete(API_URL + '/' + sport.id, { headers: getUserRole() });
   }
 
+  getParticularSports(stype) {
+    return axios.get(API_URL + `/sports/${stype}`);
+  }
+
   getAllSports() {
-    return axios.get(API_URL);
+    return axios.get(API_URL + `/sports`);
   }
   // getSportImage(id) {
   //   return axios.get(`http://localhost:8080/sports/${id}/image`, {

@@ -1,23 +1,23 @@
 export default class Concert {
     constructor(
-        eventId,
-        eventType,
+        id,
+        stype,
         name,
         location,
         date,
-        time,
+        
         required,
         joined,
         
       ){
-        this.eventId=eventId;
-        this.eventType=eventType;
+        this.id=id;
+        this.stype=stype;
         this.name=name;
         this.location=location;
         this.date=date;
-        this.time=time;
+        
         this.required=required;
-        this.joined=joined;
+        this.joined=0;
         
       }
 }
