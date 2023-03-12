@@ -1,16 +1,18 @@
-import { BASE_API_URL } from '../common/constants';
-import axios from 'axios';
+import { BASE_API_URL } from "../common/constants";
+import axios from "axios";
 import { clearCurrentUser, setCurrentUser } from "../store/actions/user";
-import { useSelector } from 'react-redux';
-import { authHeader, getUserRole } from './base.service';
+import { useSelector } from "react-redux";
+import { authHeader, getUserRole } from "./base.service";
 
-const API_URL = BASE_API_URL + '/event';
+const API_URL = BASE_API_URL + "/event";
 
 class ConcertService {
   //const currentUser = useSelector((state) => state.user);
-  saveConcert(concert,id) {
+  saveConcert(concert, id) {
     console.log(id);
-  return axios.post(API_URL+ `/add/concert?${id}`, { headers: authHeader() });
+    return axios.post(API_URL + `/add/concert?id=${id}`, concert, {
+      headers: authHeader(),
+    });
   }
 
   //upload concert image
@@ -26,11 +28,11 @@ class ConcertService {
   // }
 
   deleteConcert(concert) {
-    return axios.delete(API_URL + '/' + concert.id, { headers: getUserRole() });
+    return axios.delete(API_URL + "/" + concert.id, { headers: getUserRole() });
   }
 
   getAllConcerts() {
-    return axios.get(API_URL + '/concerts');
+    return axios.get(API_URL + "/concerts");
   }
   // getConcertImage(id) {
   //   return axios.get(`http://localhost:8080/concerts/${id}/image`, {
