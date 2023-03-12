@@ -1,0 +1,25 @@
+export default class Concert {
+    constructor(
+        eventId,
+        eventType,
+        fromLocation,
+        toLocation,
+        onDate,
+        time,
+        mediumType,
+        required,
+        joined,
+        description
+      ){
+        this.eventId=eventId;
+        this.eventType=eventType;
+        this.fromLocation=fromLocation;
+        this.toLocation=toLocation;
+        this.onDate=onDate;
+        this.time=time;
+        this.mediumType=mediumType;
+        this.required=required;
+        this.joined=joined;
+        this.description=description;
+      }
+}
