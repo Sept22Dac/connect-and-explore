@@ -1,5 +1,6 @@
 export default class User {
   constructor(
+    id,
     fname,
     lname,
     dob,
@@ -12,6 +13,7 @@ export default class User {
     role,
     token
   ) {
+    this.id = id;
     this.fname = fname;
     this.lname = lname;
     this.dob = dob;

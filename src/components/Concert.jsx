@@ -2,9 +2,13 @@ import { useEffect, useState } from 'react';
 import ConcertService from '../services/concert.service';
 import { useSelector } from 'react-redux';
 import concert from '../models/concert';
+import { BrowserRouter as Router,Routes,Route, Link } from 'react-router-dom';
 import './styling.css';
+import ConcertList from '../list/ConcertList';
+import ConcertForm from '../eventform/ConcertForm';
 
 const Concert = () => {
+
   const [concertList, setConcertList] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     const [infoMessage, setInfoMessage] = useState('');
@@ -31,51 +35,17 @@ const Concert = () => {
 
 
 
-    useEffect(() => {
-        console.log("use effect1");
-        ConcertService.getAllConcerts().then((response) => {
-            setConcertList(response.data);
-
-        });
-        
-        
-    }, 
-    []);
-    // useEffect(() => {
-    //     console.log("use effect2");
-    //     console.log("pr list1 "+concertList);
-    //     concertList.forEach(concert =>{             
-    //         showImage(concert);
-    //     });
-    // },[concertList]);
-
-    // const purchase = (concert) => {
-    //     if (!currentUser?.id) {
-    //         setErrorMessage('You should login to buy a concert.');
-    //         return;
-    //     }
-
-    //     const purchase = new Purchase(currentUser.id, concert.id, concert.price);
-
-    //     PurchaseService.savePurchase(purchase).then(() => {
-    //         setInfoMessage('Concert Purchased.');
-    //     }).catch((err) => {
-    //         setErrorMessage('Unexpected error occurred.');
-    //         console.log(err);
-    //     });
-    // };
-
-
-    const join = (concert) =>{
-        if(!currentUser?.id){
-            setErrorMessage('You should login to join a concert.');
-            return;
-        }
-        
-    }
+  
 
     return (
-        <div className="container p-3">
+        <div className='my-2'>
+            
+
+        <h1 className="text-center border bg-dark text-warning">Concert Page</h1>
+        
+        <div className="container mx-5 my-3">
+            
+            
 
             {errorMessage &&
             <div className="alert alert-danger">
@@ -88,42 +58,32 @@ const Concert = () => {
                 {infoMessage}
             </div>
             }
-
-            <div className="d-flex flex-wrap">
-                {concertList.map((item, ind) =>
-                    <div key={item.id} className="card m-3 home-card">
-
-                        <div className="card-body">
-                            <div className="card-title text-uppercase">{item.name}</div>
-                            <div className="card-subtitle text-muted">{item.location}</div>
-                            <div className="card-subtitle text-muted">{item.date}</div>
-                            <div className="card-subtitle text-muted">{item.required}</div>
-                            <div className="card-subtitle text-muted">{item.joined}</div>
-                            <div className="card-subtitle text-muted">{item.paid}</div>
-                            {/* <div className="card-subtitle text-muted">{item.charges}</div> */}
-                       
-                         {/* <img src={BASE_URL +item.id +'/image'} style={{'height':'100px','width':'100px'}} alt="No Image!!!"></img> */}
-                         </div>
-                        
-
-                        <div className="row mt-2 p-3">
-                            <div className="col-6 mt-2 ps-4">
-                                {`Rs. ${item.charges}`}
-                            </div>
-                            <div className="col-6">
-                                <button
-                                    className="btn btn-outline-success w-100" onClick={() => join(item)}>
-                                    Join
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                )}
-
+            <div class="row">
+                <div class="col-3">
+                
+                    <Link to="#" class="list-group-item list-group-item-action active">Menu</Link>
+                    <Link tag='a'  to="/concert/viewConcert" class="list-group-item list-group-item-action">View All Concert Events</Link>
+                    <Link tag='a' to="/concert/addConcert" class="list-group-item list-group-item-action">Create a Concert Event</Link>
+                    
+                
+                </div>
+            <div class="col-9">
+                <Routes>
+                <Route path='/' element={<ConcertList/>} />
+                <Route path='/viewConcert' element={<ConcertList/>} />
+                <Route path='/addConcert' element={<ConcertForm/>} />      
+                </Routes>
+            </div>
+            
             </div>
 
+                      
         </div>
+        
+        </div>
+        
+        
+        
   );
 };
 
