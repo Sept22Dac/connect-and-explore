@@ -42,7 +42,7 @@ const ConcertList = () => {
   // },[concertList]);
 
   // const purchase = (concert) => {
-  //     if (!currentUser?.id) {
+  //     if (!currentUser?.user_id) {
   //         setErrorMessage('You should login to buy a concert.');
   //         return;
   //     }
@@ -80,7 +80,12 @@ const ConcertList = () => {
               <div className="card-subtitle text-muted">
                 Location: {item.location}
               </div>
-              <div className="card-subtitle text-muted">Date: {item.date}</div>
+              <div className="card-subtitle text-muted">
+                Date : {item.date.substring(0, 10)}
+              </div>
+              <div className="card-subtitle text-muted">
+                Time : {item.date.substring(11, 16)}
+              </div>
               <div className="card-subtitle text-muted">
                 Maximum Capacity: {item.required}
               </div>

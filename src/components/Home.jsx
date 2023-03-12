@@ -32,7 +32,7 @@ const Home = () => {
             </a> */}
             <div class="card-img-overlay">
               <h2>Explore Sports Events near you !</h2>
-              <NavLink className="btn-primary" to="/sports">
+              <NavLink className="btn-primary" to="/sport">
                 Lets Go!
               </NavLink>
             </div>

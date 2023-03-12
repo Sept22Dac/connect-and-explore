@@ -22,7 +22,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentUser?.id) {
+    if (currentUser?.user_id) {
       console.log(currentUser.gender);
       //navigate
       navigate("/profile");

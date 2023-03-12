@@ -24,6 +24,7 @@ export default function ConcertForm() {
   };
   const addConcert = (e) => {
     e.preventDefault();
+
     setSubmitted(true);
     console.log(concert);
 
@@ -31,21 +32,13 @@ export default function ConcertForm() {
       !concert.name ||
       !concert.location ||
       !concert.date ||
-      !concert.required ||
-      !concert.paid ||
-      !concert.charges
+      !concert.required
     ) {
       return;
     }
 
     setLoading(true);
 
-    setConcert((prevState) => {
-      return {
-        ...prevState,
-        [joined]: 0,
-      };
-    });
     ConcertService.saveConcert(concert, currentUser?.user_id)
       .then((_) => {
         navigate("/concert/viewConcert");
