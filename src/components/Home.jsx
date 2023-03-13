@@ -6,6 +6,7 @@ import sports from "../asset/images/sports.jpg";
 import concert from "../asset/images/concerts.jpg";
 import "../asset/style.css";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -30,10 +31,10 @@ const Home = () => {
             {/* <a className="caption-text" href="#">
               Explore Sports Events near you !
             </a> */}
-            <div class="card-img-overlay">
+            <div class="card-img-overlay ">
               <h2>Explore Sports Events near you !</h2>
               <NavLink className="btn-primary" to="/sport">
-                Lets Go!
+                Click here!
               </NavLink>
             </div>
           </div>
@@ -42,7 +43,7 @@ const Home = () => {
             <div class="card-img-overlay">
               <h2 className="travel-cap">Find Travel mates near you!</h2>
               <NavLink className="btn-primary" to="/travel">
-                Lets Go!
+                Click here!
               </NavLink>
             </div>
           </div>
@@ -53,7 +54,7 @@ const Home = () => {
                 Explore Clubs , Concerts Events near you !
               </h2>
               <NavLink className="btn-primary" to="/concert">
-                Lets Go!
+                Click here!
               </NavLink>
             </div>
           </div>

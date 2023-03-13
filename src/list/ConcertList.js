@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ConcertService from "../services/concert.service";
 import { useSelector } from "react-redux";
+import { joinEvent } from "../services/base.service";
 
 import "../components/styling.css";
 
@@ -62,6 +63,15 @@ const ConcertList = () => {
       setErrorMessage("You should login to join a concert.");
       return;
     }
+    console.log(concert);
+    joinEvent(concert.id)
+      .then((response) => {
+        setInfoMessage("joined successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage("unexpected error occured");
+      });
   };
 
   return (
