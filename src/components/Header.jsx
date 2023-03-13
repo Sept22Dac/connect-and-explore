@@ -23,10 +23,10 @@ function Header() {
     <div>
       <nav
         class="navbar navbar-light navbar-expand-lg "
-        style={{ backgroundColor: "rgb(203, 195, 227)" }}
+        style={{ backgroundColor: "rgb(203, 215, 283)" }}
       >
-        <Link className="navbar-brand" to="/home">
-          Ce | Connect & Explore
+        <Link className="navbar-brand font-weight-bold" to="/home">
+          Connect & Explore
         </Link>
         <button
           class="navbar-toggler"
@@ -42,13 +42,13 @@ function Header() {
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <Link class="nav-link" to="/home">
                 Home <span class="sr-only">(current)</span>
               </Link>
             </li>
             <li class="nav-item">
-              <Link class="nav-link" to="/sport">
+              <Link class="nav-link " to="/sport">
                 Sports
               </Link>
             </li>
@@ -60,11 +60,6 @@ function Header() {
             <li class="nav-item">
               <Link class="nav-link" to="/concert">
                 Concert
-              </Link>
-            </li>
-            <li class="nav-item">
-              <Link class="nav-link" to="/business">
-                Business
               </Link>
             </li>
           </ul>

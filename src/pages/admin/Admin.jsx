@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-//import { User } from "../../Models/User";
-import { Link, Route, Routes } from "react-router-dom";
-import MyEvents from "../../list/MyEvents";
-import JoinedEvents from "../../list/JoinedEvents";
+import { useState } from "react";
 import UserDetails from "../../list/UserDetails";
+import AdminService from "../../services/admin.service";
+import AdminDetails from "../../list/AdminDetails";
+import { Link, Routes, Route } from "react-router-dom";
+import UsersList from "../../list/UsersList";
 
-function ProfilePage() {
+const Admin = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
   return (
     <div className="my-2">
-      <h1 className="text-center border bg-dark text-warning">Profile Page</h1>
+      <h1 className="text-center border bg-dark text-warning">Admin Page</h1>
 
       <div className="container mx-5 my-3">
         {errorMessage && (
@@ -27,37 +27,29 @@ function ProfilePage() {
             </Link>
             <Link
               tag="a"
-              to="/profile"
+              to="/admin"
               class="list-group-item list-group-item-action"
             >
-              User Details
+              Admin Details
             </Link>
             <Link
               tag="a"
-              to="/profile/myevents"
+              to="/admin/users"
               class="list-group-item list-group-item-action"
             >
-              My Events
-            </Link>
-            <Link
-              tag="a"
-              to="/profile/joinedevents"
-              class="list-group-item list-group-item-action"
-            >
-              Joined Events
+              All users
             </Link>
           </div>
           <div class="col-9">
             <Routes>
-              <Route path="/" element={<UserDetails />} />
-              <Route path="/myevents" element={<MyEvents />} />
-              <Route path="/joinedevents" element={<JoinedEvents />} />
+              <Route path="/" element={<AdminDetails />} />
+              <Route path="/users" element={<UsersList />} />
             </Routes>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default ProfilePage;
+export default Admin;

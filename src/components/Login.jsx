@@ -22,7 +22,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentUser?.id) {
+    if (currentUser?.user_id) {
       console.log(currentUser.gender);
       //navigate
       navigate("/profile");
@@ -86,7 +86,7 @@ const Login = () => {
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input
-              type="text"
+              type="email"
               name="email"
               className="form-control"
               placeholder="email"

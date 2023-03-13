@@ -12,6 +12,8 @@ import Signup from "./components/Signup";
 import ProfilePage from "./pages/profile/profile.page";
 import { AuthGuard } from "./guards/auth.guard";
 import { Role } from "./models/role";
+import Admin from "./pages/admin/Admin";
+
 function App() {
   return (
     <div>
@@ -20,13 +22,21 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route
-          path="/profile"
+          path="/profile/*"
           element={
             <AuthGuard roles={[Role.USER, Role.ADMIN]}>
               <ProfilePage />
             </AuthGuard>
           }
         ></Route>
+        <Route
+          path="/admin/*"
+          element={
+            <AuthGuard roles={[Role.ADMIN]}>
+              <Admin />
+            </AuthGuard>
+          }
+        />
         <Route path="/sport/*" element={<Sport />}></Route>
         <Route path="/travel/*" element={<Travel />}></Route>
         <Route path="/concert/*" element={<Concert />}></Route>
