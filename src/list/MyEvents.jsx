@@ -3,11 +3,14 @@ import ConcertService from "../services/concert.service";
 import TravelService from "../services/travel.service";
 import SportService from "../services/sport.service";
 import { useSelector } from "react-redux";
+import { removeEventById } from "../services/base.service";
 
 const MyEvents = () => {
   const [sportsList, setSportsList] = useState([]);
   const [travelList, setTravelList] = useState([]);
   const [concertList, setConcertList] = useState([]);
+  const [infoMessage, setInfoMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const currentUser = useSelector((state) => state.user);
 
@@ -28,10 +31,21 @@ const MyEvents = () => {
     );
   }, []);
 
-  const removeEvent = (item) => {};
+  const removeEvent = (event_id) => {
+    removeEventById(event_id)
+      .then((response) => {
+        setInfoMessage("successfully removed");
+      })
+      .catch((error) => {
+        setErrorMessage("unexpected error occurred!");
+      });
+  };
 
   return (
     <div>
+      {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+
+      {infoMessage && <div className="alert alert-success">{infoMessage}</div>}
       <div className="d-flex flex-wrap">
         {travelList.map((item, ind) => (
           <div key={item.id} className="card m-3 home-card">
@@ -71,15 +85,9 @@ const MyEvents = () => {
                 <div className="col-6">
                   <button
                     className="btn btn-outline-success w-100"
-                    onClick={() => removeEvent(item)}
+                    onClick={() => removeEvent(item.id)}
                   >
                     Remove
-                  </button>
-                  <button
-                    className="btn btn-outline-success w-100"
-                    onClick={() => removeEvent(item)}
-                  >
-                    Update
                   </button>
                 </div>
               </div>
@@ -119,15 +127,9 @@ const MyEvents = () => {
               <div className="col-6">
                 <button
                   className="btn btn-outline-success w-100"
-                  onClick={() => removeEvent(item)}
+                  onClick={() => removeEvent(item.id)}
                 >
-                  remove
-                </button>
-                <button
-                  className="btn btn-outline-success w-100"
-                  onClick={() => removeEvent(item)}
-                >
-                  Update
+                  Remove
                 </button>
               </div>
             </div>
@@ -170,15 +172,9 @@ const MyEvents = () => {
               <div className="col-6">
                 <button
                   className="btn btn-outline-success w-100"
-                  onClick={() => removeEvent(item)}
+                  onClick={() => removeEvent(item.id)}
                 >
-                  remove
-                </button>
-                <button
-                  className="btn btn-outline-success w-100"
-                  onClick={() => removeEvent(item)}
-                >
-                  Update
+                  Remove
                 </button>
               </div>
             </div>

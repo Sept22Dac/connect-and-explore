@@ -3,10 +3,13 @@ import ConcertService from "../services/concert.service";
 import TravelService from "../services/travel.service";
 import SportService from "../services/sport.service";
 import { useSelector } from "react-redux";
+import { optOutEvent } from "../services/base.service";
 const JoinedEvents = () => {
   const [sportsList, setSportsList] = useState([]);
   const [travelList, setTravelList] = useState([]);
   const [concertList, setConcertList] = useState([]);
+  const [infoMessage, setInfoMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const currentUser = useSelector((state) => state.user);
 
@@ -25,10 +28,22 @@ const JoinedEvents = () => {
     });
   }, []);
 
-  const optOut = (item) => {};
+  const optOut = (event_id) => {
+    optOutEvent(event_id)
+      .then((response) => {
+        setInfoMessage("Successfully opted out");
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage("unexpected error occurred!");
+      });
+  };
 
   return (
     <div>
+      {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+
+      {infoMessage && <div className="alert alert-success">{infoMessage}</div>}
       <div className="d-flex flex-wrap">
         {travelList.map((item, ind) => (
           <div key={item.id} className="card m-3 home-card">
@@ -68,9 +83,9 @@ const JoinedEvents = () => {
                 <div className="col-6">
                   <button
                     className="btn btn-outline-success w-100"
-                    onClick={() => optOut(item)}
+                    onClick={() => optOut(item.id)}
                   >
-                    OptOut
+                    Withdraw
                   </button>
                 </div>
               </div>
@@ -110,9 +125,9 @@ const JoinedEvents = () => {
               <div className="col-6">
                 <button
                   className="btn btn-outline-success w-100"
-                  onClick={() => optOut(item)}
+                  onClick={() => optOut(item.id)}
                 >
-                  OptOut
+                  Withdraw
                 </button>
               </div>
             </div>
@@ -155,9 +170,9 @@ const JoinedEvents = () => {
               <div className="col-6">
                 <button
                   className="btn btn-outline-success w-100"
-                  onClick={() => optOut(item)}
+                  onClick={() => optOut(item.id)}
                 >
-                  OptOut
+                  Withdraw
                 </button>
               </div>
             </div>

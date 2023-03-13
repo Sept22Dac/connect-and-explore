@@ -75,62 +75,72 @@ const TravelList = () => {
   };
 
   return (
-    <div className="container mx-5 my-3">
-      <h2>Lists of Travels are as follows:</h2>
+    <>
+      {travelList.length === 0 ? (
+        <h2 className="text-center">There are no Events</h2>
+      ) : (
+        <div className="container mx-5 my-3">
+          <h2>Lists of Travels are as follows:</h2>
 
-      {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+          {errorMessage && (
+            <div className="alert alert-danger">{errorMessage}</div>
+          )}
 
-      {infoMessage && <div className="alert alert-success">{infoMessage}</div>}
+          {infoMessage && (
+            <div className="alert alert-success">{infoMessage}</div>
+          )}
 
-      <div className="d-flex flex-wrap">
-        {travelList.map((item, ind) => (
-          <div key={item.id} className="card m-3 home-card">
-            <div className="card-body">
-              {/* <div className="card-title text-uppercase">Name: {item.name}</div> */}
-              <div className="card-title text-uppercase">
-                Source : {item.fromLocation}
-              </div>
-              <div className="card-title text-uppercase">
-                Destination : {item.toLocation}
-              </div>
-              <div className="card-subtitle text-muted">
-                Date : {item.onDate.substring(0, 10)}
-              </div>
-              <div className="card-subtitle text-muted">
-                Time : {item.onDate.substring(11, 16)}
-              </div>
-              <div className="card-subtitle text-muted">
-                Vehicle Type/Medium : {item.mediumType}
-              </div>
-              <div className="card-subtitle text-muted">
-                Maximum Capacity : {item.required}
-              </div>
-              <div className="card-subtitle text-muted">
-                Number of People Joined : {item.joined}
-              </div>
-              <br />
-              <div className="card-subtitle text-muted">
-                Description :<br /> {item.description}
-              </div>
-              {/* <div className="card-subtitle text-muted">{item.charges}</div> */}
+          <div className="d-flex flex-wrap">
+            {travelList.map((item, ind) => (
+              <div key={item.id} className="card m-3 home-card">
+                <div className="card-body">
+                  {/* <div className="card-title text-uppercase">Name: {item.name}</div> */}
+                  <div className="card-title text-uppercase">
+                    Source : {item.fromLocation}
+                  </div>
+                  <div className="card-title text-uppercase">
+                    Destination : {item.toLocation}
+                  </div>
+                  <div className="card-subtitle text-muted">
+                    Date : {item.onDate.substring(0, 10)}
+                  </div>
+                  <div className="card-subtitle text-muted">
+                    Time : {item.onDate.substring(11, 16)}
+                  </div>
+                  <div className="card-subtitle text-muted">
+                    Vehicle Type/Medium : {item.mediumType}
+                  </div>
+                  <div className="card-subtitle text-muted">
+                    Maximum Capacity : {item.required}
+                  </div>
+                  <div className="card-subtitle text-muted">
+                    Number of People Joined : {item.joined}
+                  </div>
+                  <br />
+                  <div className="card-subtitle text-muted">
+                    Description :<br /> {item.description}
+                  </div>
+                  {/* <div className="card-subtitle text-muted">{item.charges}</div> */}
 
-              {/* <img src={BASE_URL +item.id +'/image'} style={{'height':'100px','width':'100px'}} alt="No Image!!!"></img> */}
-            </div>
+                  {/* <img src={BASE_URL +item.id +'/image'} style={{'height':'100px','width':'100px'}} alt="No Image!!!"></img> */}
+                </div>
 
-            <div className="row mt-2 p-3">
-              <div className="col-6">
-                <button
-                  className="btn btn-outline-success w-100"
-                  onClick={() => join(item)}
-                >
-                  Join
-                </button>
+                <div className="row mt-2 p-3">
+                  <div className="col-6">
+                    <button
+                      className="btn btn-outline-success w-100"
+                      onClick={() => join(item)}
+                    >
+                      Join
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 

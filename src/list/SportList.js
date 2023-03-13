@@ -84,60 +84,70 @@ const SportList = (props) => {
   };
 
   return (
-    <div className="container mx-5 my-3">
-      <h2>Lists of Sports are as follows:</h2>
+    <>
+      {sportList.length === 0 ? (
+        <h2 className="text-center">There are no Events</h2>
+      ) : (
+        <div className="container mx-5 my-3">
+          <h2>Lists of Sports are as follows:</h2>
 
-      {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+          {errorMessage && (
+            <div className="alert alert-danger">{errorMessage}</div>
+          )}
 
-      {infoMessage && <div className="alert alert-success">{infoMessage}</div>}
+          {infoMessage && (
+            <div className="alert alert-success">{infoMessage}</div>
+          )}
 
-      <div className="d-flex flex-wrap">
-        {sportList.map((item, ind) => (
-          <div key={item.id} className="card m-3 home-card">
-            <div className="card-body">
-              <div className="card-title text-uppercase">
-                Sport: {item.stype}
-              </div>
-              <div className="card-subtitle text-muted">
-                Location: {item.location}
-              </div>
-              <div className="card-subtitle text-muted">
-                Date : {item.date.substring(0, 10)}
-              </div>
-              <div className="card-subtitle text-muted">
-                Time : {item.date.substring(11, 16)}
-              </div>
-              <div className="card-subtitle text-muted">
-                Maximum Capacity: {item.required}
-              </div>
-              <div className="card-subtitle text-muted">
-                Number of People Joined: {item.joined}
-              </div>
-              <br />
-              <div className="card-subtitle text-muted">
-                Details: <br />
-                {item.name}
-              </div>
+          <div className="d-flex flex-wrap">
+            {sportList.map((item, ind) => (
+              <div key={item.id} className="card m-3 home-card">
+                <div className="card-body">
+                  <div className="card-title text-uppercase">
+                    Sport: {item.stype}
+                  </div>
+                  <div className="card-subtitle text-muted">
+                    Location: {item.location}
+                  </div>
+                  <div className="card-subtitle text-muted">
+                    Date : {item.date.substring(0, 10)}
+                  </div>
+                  <div className="card-subtitle text-muted">
+                    Time : {item.date.substring(11, 16)}
+                  </div>
+                  <div className="card-subtitle text-muted">
+                    Maximum Capacity: {item.required}
+                  </div>
+                  <div className="card-subtitle text-muted">
+                    Number of People Joined: {item.joined}
+                  </div>
+                  <br />
+                  <div className="card-subtitle text-muted">
+                    Details: <br />
+                    {item.name}
+                  </div>
 
-              {/* <div className="card-subtitle text-muted">{item.charges}</div> */}
+                  {/* <div className="card-subtitle text-muted">{item.charges}</div> */}
 
-              {/* <img src={BASE_URL +item.id +'/image'} style={{'height':'100px','width':'100px'}} alt="No Image!!!"></img> */}
-            </div>
+                  {/* <img src={BASE_URL +item.id +'/image'} style={{'height':'100px','width':'100px'}} alt="No Image!!!"></img> */}
+                </div>
 
-            <div className="row mt-2 p-3">
-              <div className="col-6">
-                <button
-                  className="btn btn-outline-success w-100"
-                  onClick={() => join(item)}
-                >
-                  Join
-                </button>
+                <div className="row mt-2 p-3">
+                  <div className="col-6">
+                    <button
+                      className="btn btn-outline-success w-100"
+                      onClick={() => join(item)}
+                    >
+                      Join
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 

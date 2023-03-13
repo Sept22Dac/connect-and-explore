@@ -17,12 +17,8 @@ const UsersList = () => {
     AdminService.deleteUser(id)
       .then((response) => {
         setInfoMessage("user deleted successfully");
-        setUserList((prevState) => {
-          return {
-            ...prevState,
-          };
-        });
       })
+
       .catch((error) => {
         console.log(error);
         setErrorMessage("unexpected error occured");
@@ -31,7 +27,7 @@ const UsersList = () => {
 
   return (
     <div className="container mx-5 my-3">
-      <h2>Lists of Travels are as follows:</h2>
+      <h2>Lists of Users are as follows:</h2>
 
       {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
 
