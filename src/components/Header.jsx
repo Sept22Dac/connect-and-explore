@@ -25,7 +25,7 @@ function Header() {
         class="navbar navbar-light navbar-expand-lg "
         style={{ backgroundColor: "rgb(203, 215, 283)" }}
       >
-        <Link className="navbar-brand font-weight-bold" to="/home">
+        <Link className="h3 font-weight-bold texxt-dark" to="/home">
           Connect & Explore
         </Link>
         <button

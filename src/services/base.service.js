@@ -27,3 +27,20 @@ export const joinEvent = (eventid) => {
     { headers: authHeader() }
   );
 };
+
+export const optOutEvent = (event_id) => {
+  const currentUser = store.getState().user;
+  return axios.delete(
+    BASE_API_URL +
+      `/event/optOut?user_id=${currentUser?.user_id}&event_id=${event_id}`,
+    {
+      headers: authHeader(),
+    }
+  );
+};
+
+export const removeEventById = (event_id) => {
+  return axios.delete(BASE_API_URL + `/event/delete/${event_id}`, {
+    headers: authHeader(),
+  });
+};
