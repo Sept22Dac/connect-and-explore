@@ -10,9 +10,11 @@ class ConcertService {
   //const currentUser = useSelector((state) => state.user);
   saveConcert(concert, id) {
     console.log(id);
-    return axios.post(API_URL + `/add/concert?id=${id}`, concert, {
-      headers: authHeader(),
-    });
+    return axios.post(API_URL + `/add/concert?id=${id}`, concert, 
+    // {
+    //   headers: authHeader(),
+    // }
+    );
   }
 
   //upload concert image
@@ -32,14 +34,18 @@ class ConcertService {
   }
 
   getAllJoinedConcerts(id) {
-    return axios.get(API_URL + `/concertevents/${id}`, {
-      headers: authHeader(),
-    });
+    return axios.get(API_URL + `/concertevents/${id}`, 
+    // {
+    //   headers: authHeader(),
+    // }
+    );
   }
   getAllCreatedConcerts(id) {
-    return axios.get(API_URL + `/myconcertevents/${id}`, {
-      headers: authHeader(),
-    });
+    return axios.get(API_URL + `/myconcertevents/${id}`, 
+    // {
+    //   headers: authHeader(),
+    // }
+    );
   }
 
   getAllConcerts() {

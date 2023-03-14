@@ -10,21 +10,27 @@ class TravelService {
   //const currentUser = useSelector((state) => state.user);
   saveTravel(travel, id) {
     console.log(id);
-    return axios.post(API_URL + `/add/travel?id=${id}`, travel, {
-      headers: authHeader(),
-    });
+    return axios.post(API_URL + `/add/travel?id=${id}`, travel,
+    //  {
+    //   headers: authHeader(),
+    // }
+    );
   }
 
   getAllJoinedTravels(id) {
-    return axios.get(API_URL + `/travelevents/${id}`, {
-      headers: authHeader(),
-    });
+    return axios.get(API_URL + `/travelevents/${id}`,
+    //  {
+    //   headers: authHeader(),
+    // }
+    );
   }
 
   getAllCreatedTravels(id) {
-    return axios.get(API_URL + `/mytravelevents/${id}`, {
-      headers: authHeader(),
-    });
+    return axios.get(API_URL + `/mytravelevents/${id}`, 
+    // {
+    //   headers: authHeader(),
+    // }
+    );
   }
 
   //upload travel image
