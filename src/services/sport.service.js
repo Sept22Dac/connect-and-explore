@@ -10,9 +10,11 @@ class SportService {
   //const currentUser = useSelector((state) => state.user);
   saveSport(sport, id) {
     console.log(id);
-    return axios.post(API_URL + `/add/sport?id=${id}`, sport, {
-      headers: authHeader(),
-    });
+    return axios.post(API_URL + `/add/sport?id=${id}`, sport,
+    //  {
+    //   headers: authHeader(),
+    // }
+    );
   }
 
   //upload sport image
@@ -36,15 +38,19 @@ class SportService {
   }
 
   getAllJoinedSports(id) {
-    return axios.get(API_URL + `/sportsevents/${id}`, {
-      headers: authHeader(),
-    });
+    return axios.get(API_URL + `/sportsevents/${id}`, 
+    // {
+    //   headers: authHeader(),
+    // }
+    );
   }
 
   getAllCreatedSports(id) {
-    return axios.get(API_URL + `/mysportsevents/${id}`, {
-      headers: authHeader(),
-    });
+    return axios.get(API_URL + `/mysportsevents/${id}`, 
+    // {
+    //   headers: authHeader(),
+    // }
+    );
   }
   getAllSports() {
     return axios.get(API_URL + `/sports`);
